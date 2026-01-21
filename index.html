@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #000000; /* تغيير للهوية الفاخرة باللون الأسود */
+            --primary: #000000;
             --blue-accent: #0071e3;
             --gold: #d4af37;
             --bg-light: #ffffff;
@@ -269,10 +269,66 @@
             margin-top: 24px;
         }
 
+        /* Modal Styles for Privacy Policy */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 20000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 32px;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            position: relative;
+            animation: fadeInScale 0.4s ease;
+        }
+
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: var(--text-dark);
+        }
+
+        .modal-body h2 {
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--blue-accent);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .modal-body p, .modal-body ul {
+            margin-bottom: 15px;
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
         @media (max-width: 768px) {
             .hero { padding-top: 120px; }
             .hero h1 { font-size: 3rem; }
             .btn-main { width: 90%; text-align: center; }
+            .modal-content { padding: 25px; margin: 10% auto; }
         }
     </style>
 </head>
@@ -339,11 +395,47 @@
                     <span>تواصل معنا عبر واتساب</span>
                 </a>
             </div>
+            <div style="margin-top: 40px; display: flex; justify-content: center; gap: 20px;">
+                <a href="javascript:void(0)" id="privacy-trigger" style="color: #666; text-decoration: none; font-size: 0.9rem;">سياسة الخصوصية</a>
+            </div>
             <div style="margin-top: 80px; border-top: 1px solid #222; padding-top: 40px; color: #555; font-size: 0.85rem;">
                 <p>&copy; 2025 MATJARHALAL. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Modal for Privacy Policy -->
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            <div class="modal-body">
+                <h2>سياسة الخصوصية</h2>
+                <p>في <strong>MATJARHALAL</strong>، نولي أهمية قصوى لخصوصية زوارنا وعملائنا. توضح هذه السياسة كيفية تعاملنا مع معلوماتك الشخصية.</p>
+                
+                <h3>1. المعلومات التي نجمعها</h3>
+                <p>عند قيامك بطلب منتج، نقوم بجمع المعلومات التالية فقط لغرض إتمام عملية التوصيل:</p>
+                <ul>
+                    <li>الاسم الكامل.</li>
+                    <li>رقم الهاتف.</li>
+                    <li>عنوان التسليم (المدينة والعنوان التفصيلي).</li>
+                </ul>
+
+                <h3>2. كيف نستخدم معلوماتك</h3>
+                <p>تستخدم المعلومات حصرياً من أجل:</p>
+                <ul>
+                    <li>تأكيد الطلب عبر مكالمة هاتفية.</li>
+                    <li>شحن وتوصيل المنتج إلى باب منزلك.</li>
+                    <li>تحسين خدمة العملاء والتواصل معك بخصوص طلبك.</li>
+                </ul>
+
+                <h3>3. حماية البيانات</h3>
+                <p>نحن لا نقوم ببيع أو مشاركة أو تأجير بياناتك الشخصية لأي طرف ثالث. معلوماتك مشفرة ومحمية ويتم الوصول إليها فقط من قبل فريق التوصيل المختص.</p>
+
+                <h3>4. حقوقك</h3>
+                <p>يمكنك في أي وقت طلب حذف معلوماتك من سجلاتنا بعد استلام طلبك عبر التواصل معنا على الواتساب.</p>
+            </div>
+        </div>
+    </div>
 
     <script>
         /**
@@ -355,7 +447,6 @@
                 description: "النسخة الأكثر تطوراً لهذا العام. شاشة AMOLED مبهرة، هيكل تيتانيوم صلب، وتتبع صحي دقيق. متوفرة الآن وحصرياً بجودة أصلية 100%.",
                 price: "499",
                 currency: "درهم مغربي",
-                // رابط صورة موثوق وعالي الدقة
                 image: "https://images.unsplash.com/photo-1434493907317-a46b53b81882?q=80&w=1200&auto=format&fit=crop",
                 buyLink: "https://wa.me/212600000000?text=أريد_طلب_ساعة_ألترا_برو_الأصلية",
                 whatsapp: "https://wa.me/212600000000"
@@ -422,6 +513,28 @@
             }, { threshold: 0.1 });
 
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // منطق النافذة المنبثقة (Modal)
+            const modal = document.getElementById("privacy-modal");
+            const btn = document.getElementById("privacy-trigger");
+            const span = document.getElementById("close-modal");
+
+            btn.onclick = function() {
+                modal.style.display = "block";
+                document.body.style.overflow = "hidden"; // منع التمرير عند فتح المودال
+            }
+
+            span.onclick = function() {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    document.body.style.overflow = "auto";
+                }
+            }
         }
 
         window.onload = renderStore;
