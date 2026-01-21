@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Store - العرض الحصري</title>
+    <title>MATJARHALAL - المتجر الأول للتقنية الأصلية</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0071e3;
-            --primary-dark: #0077ed;
-            --accent: #ff9f0a;
-            --bg: #ffffff;
-            --secondary-bg: #f5f5f7;
-            --text-main: #1d1d1f;
-            --text-secondary: #86868b;
+            --primary: #000000; /* تغيير للهوية الفاخرة باللون الأسود */
+            --blue-accent: #0071e3;
+            --gold: #d4af37;
+            --bg-light: #ffffff;
+            --bg-soft: #fbfbfd;
+            --text-dark: #1d1d1f;
+            --text-gray: #86868b;
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.85);
+            --glass: rgba(255, 255, 255, 0.8);
         }
 
         * {
@@ -30,28 +30,22 @@
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            line-height: 1.5;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
         /* Animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s cubic-bezier(0.5, 0, 0, 1);
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .reveal.active {
@@ -63,13 +57,13 @@
         header {
             background: var(--glass);
             backdrop-filter: saturate(180%) blur(20px);
-            height: 52px;
+            height: 60px;
             display: flex;
             align-items: center;
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 9999;
+            z-index: 10000;
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
@@ -77,236 +71,233 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
             width: 100%;
+            padding: 0 24px;
         }
 
         .logo {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--text-main);
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--primary);
             text-decoration: none;
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
         }
+
+        .logo span { color: var(--blue-accent); }
 
         /* Hero Section */
         .hero {
-            padding: 140px 0 80px;
+            padding: 160px 0 100px;
             text-align: center;
-            background: radial-gradient(circle at top, #fcfcfc 0%, #f5f5f7 100%);
+            background: radial-gradient(circle at 50% 0%, #f0f0f5 0%, #ffffff 70%);
         }
 
-        .hero-tag {
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 12px;
+        .hero-badge {
             display: inline-block;
-            padding: 4px 12px;
-            background: rgba(255, 159, 10, 0.1);
-            border-radius: 20px;
-            animation: fadeInUp 0.6s ease both;
+            background: rgba(0, 113, 227, 0.1);
+            color: var(--blue-accent);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            animation: fadeInScale 0.6s ease;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4.2rem);
+            font-size: clamp(2.8rem, 10vw, 5rem);
             font-weight: 900;
             letter-spacing: -2px;
-            line-height: 1.1;
+            line-height: 1.05;
             margin-bottom: 24px;
-            animation: fadeInUp 0.8s ease both;
+            color: var(--text-dark);
+            animation: fadeInScale 0.8s ease backwards;
         }
 
         .hero p {
-            font-size: clamp(1.1rem, 3vw, 1.4rem);
-            color: var(--text-secondary);
-            max-width: 650px;
-            margin: 0 auto 40px;
-            animation: fadeInUp 1s ease both;
+            font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+            color: var(--text-gray);
+            max-width: 750px;
+            margin: 0 auto 48px;
+            font-weight: 400;
+            animation: fadeInScale 1s ease backwards;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            border-radius: 980px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 1.1rem;
-            cursor: pointer;
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            animation: fadeInScale 1.2s ease backwards;
         }
 
-        .btn-primary {
-            background: var(--primary);
+        .btn-main {
+            background: var(--blue-accent);
             color: var(--white);
-            box-shadow: 0 10px 20px rgba(0, 113, 227, 0.2);
+            padding: 18px 48px;
+            border-radius: 980px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 113, 227, 0.3);
         }
 
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: scale(1.03);
-            box-shadow: 0 15px 30px rgba(0, 113, 227, 0.3);
+        .btn-main:hover {
+            transform: scale(1.05);
+            background: #0077ed;
+            box-shadow: 0 15px 40px rgba(0, 113, 227, 0.4);
         }
 
-        .hero-image-container {
-            margin-top: 60px;
-            animation: fadeInUp 1.2s ease both;
+        .hero-image {
+            margin-top: 80px;
             display: flex;
             justify-content: center;
+            animation: fadeInScale 1.4s ease backwards;
         }
 
-        .hero-image-container img {
+        .hero-image img {
             width: 100%;
-            max-width: 700px;
-            border-radius: 40px;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.1);
-            transition: transform 0.5s ease;
+            max-width: 900px;
+            border-radius: 32px;
+            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.15);
+            transition: transform 0.6s ease;
         }
 
-        /* Features Section */
+        /* Features */
         .features {
-            padding: 100px 0;
-            background: var(--white);
+            padding: 120px 0;
+            background: var(--bg-soft);
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
         }
 
-        .feature-card {
-            background: var(--secondary-bg);
-            padding: 40px;
-            border-radius: 30px;
+        .feature-box {
+            background: var(--white);
+            padding: 48px;
+            border-radius: 32px;
+            transition: all 0.4s ease;
             text-align: right;
-            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.03);
         }
 
-        .feature-card:hover {
+        .feature-box:hover {
             transform: translateY(-10px);
-            background: #ededef;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
         }
 
-        .f-icon {
-            font-size: 2.8rem;
+        .f-icon-circle {
+            width: 64px;
+            height: 64px;
+            background: var(--bg-soft);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
             margin-bottom: 24px;
-            display: block;
-        }
-
-        .feature-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-            font-weight: 700;
         }
 
         /* Testimonials */
         .testimonials {
-            padding: 100px 0;
-            background: var(--secondary-bg);
+            padding: 120px 0;
         }
 
-        .t-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-        }
-
-        .t-card {
-            background: var(--white);
+        .testimonial-card {
+            background: var(--bg-soft);
             padding: 40px;
             border-radius: 24px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            position: relative;
         }
 
-        .t-user {
-            margin-top: 24px;
+        .rating {
+            color: #ffb800;
+            margin-bottom: 16px;
+            font-size: 1.2rem;
+        }
+
+        .user-info {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
+            margin-top: 24px;
         }
 
-        .t-avatar {
+        .avatar {
             width: 48px;
             height: 48px;
+            border-radius: 50%;
             background: var(--primary);
             color: white;
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: 1.2rem;
-        }
-
-        /* Order Section */
-        .order-section {
-            padding: 100px 0;
-            text-align: center;
-            background: var(--white);
         }
 
         /* Footer */
         footer {
-            background: #1d1d1f;
-            color: #f5f5f7;
-            padding: 80px 0 40px;
+            background: #000;
+            color: #fff;
+            padding: 100px 0 40px;
         }
 
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 40px;
+        .footer-logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 24px;
+            display: block;
         }
 
-        .whatsapp-cta {
+        .footer-link {
             background: #25d366;
             color: white;
-            padding: 12px 24px;
-            border-radius: 50px;
+            padding: 14px 32px;
+            border-radius: 100px;
             text-decoration: none;
             font-weight: 700;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 10px;
-            transition: transform 0.3s ease;
+            margin-top: 24px;
         }
 
-        .whatsapp-cta:hover { transform: scale(1.05); }
-
         @media (max-width: 768px) {
-            .hero { padding: 120px 0 60px; }
-            .hero-image-container img { max-width: 90%; }
-            .features-grid { grid-template-columns: 1fr; }
+            .hero { padding-top: 120px; }
+            .hero h1 { font-size: 3rem; }
+            .btn-main { width: 90%; text-align: center; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">PREMIUM<span>STORE</span></a>
-                <a href="#" id="nav-buy" class="btn btn-primary" style="padding: 6px 16px; font-size: 0.85rem;">اشتري الآن</a>
-            </nav>
-        </div>
+        <nav>
+            <a href="#" class="logo">MATJAR<span>HALAL</span></a>
+            <a href="#" id="nav-cta" class="btn-main" style="padding: 8px 20px; font-size: 0.9rem;">اطلب الآن</a>
+        </nav>
     </header>
 
     <main>
         <!-- Hero Section -->
         <section class="hero">
             <div class="container">
-                <span class="hero-tag">عرض محدود: خصم 40% اليوم</span>
-                <h1 id="p-name"></h1>
+                <span class="hero-badge" id="promo-tag">شحن مجاني لجميع المدن 🇲🇦</span>
+                <h1 id="p-name">جاري تحميل العرض...</h1>
                 <p id="p-desc"></p>
-                <div style="margin-bottom: 50px;">
-                    <a href="#" id="main-buy" class="btn btn-primary">اطلب الآن - <span id="p-price"></span></a>
-                    <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-secondary);">* الدفع عند الاستلام في جميع مدن المغرب</p>
+                <div class="cta-container">
+                    <a href="#" id="hero-cta" class="btn-main">اطلب الآن - <span id="p-price"></span></a>
+                    <span style="color: var(--text-gray); font-size: 0.9rem;">📦 الدفع عند الاستلام بعد معاينة المنتج</span>
                 </div>
-                <div class="hero-image-container">
-                    <!-- تم تغيير الصورة لصورة أكثر موثوقية -->
-                    <img id="p-img" src="" alt="Product Image">
+                <div class="hero-image">
+                    <img id="p-img" src="" alt="Product">
                 </div>
             </div>
         </section>
@@ -314,10 +305,11 @@
         <!-- Features -->
         <section class="features">
             <div class="container">
-                <div class="section-header reveal" style="text-align: center;">
-                    <h2 style="font-size: 2.5rem; font-weight: 800;">لماذا Ultra Max Pro؟</h2>
+                <div style="text-align: center; margin-bottom: 80px;" class="reveal">
+                    <h2 style="font-size: 2.8rem; font-weight: 900;">لماذا نثق بمنتجنا؟</h2>
+                    <p style="color: var(--text-gray); margin-top: 16px;">مواصفات عالمية بين يديك في المغرب</p>
                 </div>
-                <div class="features-grid" id="features-container">
+                <div class="features-grid" id="f-container">
                     <!-- Dynamic Features -->
                 </div>
             </div>
@@ -326,126 +318,113 @@
         <!-- Testimonials -->
         <section class="testimonials">
             <div class="container">
-                <div class="section-header reveal" style="margin-bottom: 50px;">
-                    <h2 style="font-size: 2.5rem; font-weight: 800;">ماذا يقول زباؤنا؟</h2>
+                <div class="reveal" style="margin-bottom: 60px;">
+                    <h2 style="font-size: 2.5rem; font-weight: 900;">شهادات زبائننا</h2>
                 </div>
-                <div class="t-grid" id="testimonials-container">
+                <div class="features-grid" id="t-container" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
                     <!-- Dynamic Testimonials -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Final CTA -->
-        <section class="order-section">
-            <div class="container">
-                <div class="reveal">
-                    <h2 style="font-size: 3rem; font-weight: 900; margin-bottom: 20px;">احصل عليها اليوم.</h2>
-                    <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 40px;">لا تفوت الفرصة، الكمية محدودة جداً!</p>
-                    <a href="#" id="footer-buy" class="btn btn-primary" style="padding: 18px 50px; font-size: 1.3rem;">تأكيد الطلب الآن</a>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div style="text-align: center;">
-                    <h3 style="font-size: 1.8rem; margin-bottom: 15px;">لديك سؤال؟ تواصل معنا</h3>
-                    <a href="#" id="whatsapp-link" class="whatsapp-cta">
-                        تواصل عبر الواتساب
-                    </a>
-                </div>
-                <div style="text-align: center; border-top: 1px solid #333; padding-top: 30px; width: 100%;">
-                    <p style="color: #666; font-size: 0.9rem;">&copy; 2025 PREMIUM STORE MAROC. جميع الحقوق محفوظة.</p>
-                </div>
+        <div class="container" style="text-align: center;">
+            <span class="footer-logo">MATJARHALAL</span>
+            <p style="color: #888; max-width: 600px; margin: 0 auto 30px;">
+                نحن في متجر حلال نسعى دائماً لتقديم أجود المنتجات الأصلية مع خدمة توصيل احترافية وضمان حقيقي.
+            </p>
+            <div>
+                <a href="#" id="wa-link" class="footer-link">
+                    <span>تواصل معنا عبر واتساب</span>
+                </a>
+            </div>
+            <div style="margin-top: 80px; border-top: 1px solid #222; padding-top: 40px; color: #555; font-size: 0.85rem;">
+                <p>&copy; 2025 MATJARHALAL. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
 
     <script>
         /**
-         * كائن التحكم في البيانات - عدل هنا وسيتغير الموقع فوراً
-         * تم تحسين روابط الصور لضمان الظهور
+         * كائن البيانات المركزي لمتجر MATJARHALAL
          */
-        const productData = {
-            name: "ساعة Ultra Max Pro",
-            description: "أقوى ساعة ذكية في السوق المغربي حالياً. شاشة AMOLED مبهرة، هيكل من التيتانيوم، وبطارية تدوم لأسابيع.",
-            price: "499",
-            currency: "درهم مغربي",
-            // صورة عالية الجودة ومستقرة
-            imageUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop",
-            buyLink: "https://wa.me/212600000000?text=أريد_طلب_ساعة_ألترا",
-            whatsapp: "https://wa.me/212600000000",
+        const storeData = {
+            product: {
+                name: "ساعة Ultra Max برو الأصلية",
+                description: "النسخة الأكثر تطوراً لهذا العام. شاشة AMOLED مبهرة، هيكل تيتانيوم صلب، وتتبع صحي دقيق. متوفرة الآن وحصرياً بجودة أصلية 100%.",
+                price: "499",
+                currency: "درهم مغربي",
+                // رابط صورة موثوق وعالي الدقة
+                image: "https://images.unsplash.com/photo-1434493907317-a46b53b81882?q=80&w=1200&auto=format&fit=crop",
+                buyLink: "https://wa.me/212600000000?text=أريد_طلب_ساعة_ألترا_برو_الأصلية",
+                whatsapp: "https://wa.me/212600000000"
+            },
             features: [
-                { title: "شاشة AMOLED", desc: "ألوان حقيقية ووضوح فائق حتى تحت الشمس.", icon: "📱" },
-                { title: "مقاومة للماء", desc: "بمعيار IP68، رفيقتك المثالية في كل الظروف.", icon: "💧" },
-                { title: "مكالمات واضحة", desc: "ميكروفون وسبيكر مدمج بجودة صوت عالية.", icon: "📞" },
-                { title: "صحة متكاملة", desc: "قياس النبض، الأكسجين، وتتبع النوم بدقة.", icon: "❤️" }
+                { title: "شاشة AMOLED", text: "وضوح فائق حتى تحت أشعة الشمس المباشرة مع استهلاك أقل للبطارية.", icon: "✨" },
+                { title: "بطارية 14 يوم", text: "نظام توفير طاقة ذكي يجعلك تنسى الشحن لأسبوعين كاملين.", icon: "🔋" },
+                { title: "مقاومة الماء", text: "بمعيار IP68، رفيقتك في السباحة والمطر والرياضات العنيفة.", icon: "🌊" },
+                { title: "نظام صحي متطور", text: "مراقبة دقيقة لنبض القلب، الأكسجين، وحرق السعرات 24/7.", icon: "❤️" }
             ],
             testimonials: [
-                { user: "يوسف من الدار البيضاء", text: "صراحة الساعة واعرة بزااف، والخدمة ديالكم احترافية. شكراً!", stars: 5 },
-                { user: "سلمى من طنجة", text: "وصلتني في قل من 24 ساعة، التغليف كان ممتاز والساعة خدامة مزيان.", stars: 5 },
-                { user: "أمين من مراكش", text: "أفضل جودة مقابل الثمن، جربت بزاف د الساعات ولكن هادي هي الطوب.", stars: 5 }
+                { name: "عمر من كازا", comment: "بصراحة الجودة هربانة بزااف، الساعة مكتفرقهاش مع الأصلية والتعامل ديال الدراري تبارك الله عليهم.", stars: 5 },
+                { name: "فاطمة من طنجة", comment: "التوصيل كان في قل من 24 ساعة، التغليف ممتاز والساعة واعرة ف اليد.", stars: 5 },
+                { name: "هشام من مراكش", text: "أفضل ساعة ذكية جربتها بهذا الثمن. البطارية كتصبر ليا سيمانة ب الخدمة.", stars: 5 }
             ]
         };
 
-        function initApp() {
-            // Basic Info
-            document.getElementById('p-name').innerText = productData.name;
-            document.getElementById('p-desc').innerText = productData.description;
-            document.getElementById('p-price').innerText = productData.price + " " + productData.currency;
+        function renderStore() {
+            // تحديث المعلومات الأساسية
+            document.getElementById('p-name').innerText = storeData.product.name;
+            document.getElementById('p-desc').innerText = storeData.product.description;
+            document.getElementById('p-price').innerText = storeData.product.price + " " + storeData.product.currency;
             
-            // Image Loading Logic with Fallback
-            const pImg = document.getElementById('p-img');
-            pImg.src = productData.imageUrl;
-            pImg.onerror = function() {
-                // صورة بديلة في حال فشل الرابط الأول
-                this.src = "https://images.unsplash.com/photo-1508685096489-7aac29145fe4?q=80&w=1200&auto=format&fit=crop";
+            // تحديث الصور مع معالجة الأخطاء
+            const imgEl = document.getElementById('p-img');
+            imgEl.src = storeData.product.image;
+            imgEl.onerror = function() {
+                this.src = "https://images.unsplash.com/photo-1544117518-e79632a65bd1?q=80&w=1200&auto=format&fit=crop";
             };
 
-            // Links
-            document.getElementById('main-buy').href = productData.buyLink;
-            document.getElementById('nav-buy').href = productData.buyLink;
-            document.getElementById('footer-buy').href = productData.buyLink;
-            document.getElementById('whatsapp-link').href = productData.whatsapp;
+            // الروابط
+            document.getElementById('hero-cta').href = storeData.product.buyLink;
+            document.getElementById('nav-cta').href = storeData.product.buyLink;
+            document.getElementById('wa-link').href = storeData.product.whatsapp;
 
-            // Render Features
-            const fContainer = document.getElementById('features-container');
-            fContainer.innerHTML = productData.features.map(f => `
-                <div class="feature-card reveal">
-                    <span class="f-icon">${f.icon}</span>
-                    <h3>${f.title}</h3>
-                    <p style="color: var(--text-secondary);">${f.desc}</p>
+            // المميزات
+            const fCont = document.getElementById('f-container');
+            fCont.innerHTML = storeData.features.map(f => `
+                <div class="feature-box reveal">
+                    <div class="f-icon-circle">${f.icon}</div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 12px;">${f.title}</h3>
+                    <p style="color: var(--text-gray);">${f.text}</p>
                 </div>
             `).join('');
 
-            // Render Testimonials
-            const tContainer = document.getElementById('testimonials-container');
-            tContainer.innerHTML = productData.testimonials.map(t => `
-                <div class="t-card reveal">
-                    <div style="color: var(--accent); margin-bottom: 12px; font-size: 1.2rem;">${'★'.repeat(t.stars)}</div>
-                    <p style="font-size: 1.1rem; line-height: 1.6; color: var(--text-main); font-style: italic;">"${t.text}"</p>
-                    <div class="t-user">
-                        <div class="t-avatar">${t.user.charAt(0)}</div>
-                        <div style="font-weight: 700;">${t.user}</div>
+            // شهادات الزبائن
+            const tCont = document.getElementById('t-container');
+            tCont.innerHTML = storeData.testimonials.map(t => `
+                <div class="testimonial-card reveal">
+                    <div class="rating">${'★'.repeat(t.stars)}</div>
+                    <p style="font-style: italic; color: var(--text-dark); font-size: 1.1rem;">"${t.comment || t.text}"</p>
+                    <div class="user-info">
+                        <div class="avatar">${t.name.charAt(0)}</div>
+                        <div style="font-weight: 700;">${t.name}</div>
                     </div>
                 </div>
             `).join('');
 
-            // Reveal Animation Observer
+            // تفعيل التحريك عند التمرير
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
+                    if (entry.isIntersecting) entry.target.classList.add('active');
                 });
             }, { threshold: 0.1 });
 
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         }
 
-        window.onload = initApp;
+        window.onload = renderStore;
     </script>
 </body>
 </html>
