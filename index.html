@@ -4,22 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر التقنية - عرض خاص</title>
-    <!-- خط القاهرة من جوجل -->
+    <title>Premium Store - عرض حصري</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        /* CSS المتغيرات والتنسيقات الأساسية */
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --accent: #f59e0b;
-            --bg: #f8fafc;
-            --text-dark: #0f172a;
-            --text-light: #64748b;
+            --primary: #0071e3;
+            --primary-dark: #0077ed;
+            --accent: #ff9f0a;
+            --bg: #ffffff;
+            --secondary-bg: #f5f5f7;
+            --text-main: #1d1d1f;
+            --text-secondary: #86868b;
             --white: #ffffff;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --glass: rgba(255, 255, 255, 0.8);
         }
 
         * {
@@ -27,33 +26,50 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--bg);
-            color: var(--text-dark);
-            line-height: 1.6;
+            color: var(--text-main);
+            line-height: 1.5;
             overflow-x: hidden;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        /* الهيدر */
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
         header {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            height: 70px;
+            background: var(--glass);
+            backdrop-filter: saturate(180%) blur(20px);
+            height: 52px;
             display: flex;
             align-items: center;
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 1000;
-            border-bottom: 1px solid #e2e8f0;
+            z-index: 9999;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
 
         nav {
@@ -64,201 +80,222 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-main);
             text-decoration: none;
+            letter-spacing: -0.5px;
         }
 
-        .logo span { color: var(--text-dark); }
-
-        /* قسم الهيرو */
+        /* Hero Section */
         .hero {
-            padding: 140px 0 80px;
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
+            padding: 120px 0 60px;
+            text-align: center;
+            overflow: hidden;
         }
 
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
+        .hero-tag {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: block;
+            animation: fadeInUp 0.6s ease;
         }
 
-        .hero-content h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 800;
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1.1;
             margin-bottom: 20px;
-            line-height: 1.2;
+            animation: fadeInUp 0.8s ease;
         }
 
-        .hero-content p {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 30px;
+        .hero p {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1s ease;
         }
 
-        .price-wrapper {
-            margin-bottom: 30px;
+        .hero-btns {
             display: flex;
-            align-items: baseline;
-            gap: 10px;
-        }
-
-        .current-price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--text-dark);
-        }
-
-        .currency {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            font-weight: 400;
+            justify-content: center;
+            gap: 20px;
+            animation: fadeInUp 1.2s ease;
         }
 
         .btn {
-            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 980px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
             background: var(--primary);
             color: var(--white);
-            padding: 16px 40px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: scale(1.02);
+        }
+
+        .hero-image-container {
+            margin-top: 60px;
+            perspective: 1000px;
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+            transition: transform 0.8s ease;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 60px 0;
+            border-bottom: 1px solid #f2f2f2;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             text-align: center;
         }
 
-        .btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.4);
-        }
+        .stat-item h3 { font-size: 2.5rem; font-weight: 800; color: var(--primary); }
+        .stat-item p { color: var(--text-secondary); font-size: 0.9rem; }
 
-        .hero-image {
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
-
-        .hero-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 24px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
-            transition: transform 0.5s ease;
-        }
-
-        .hero-image:hover img {
-            transform: scale(1.03);
-        }
-
-        /* قسم المميزات */
+        /* Features Section */
         .features {
             padding: 100px 0;
-            background: var(--white);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
+            background: var(--secondary-bg);
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
         }
 
-        .feature-item {
-            padding: 40px;
-            background: var(--bg);
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            border: 1px solid #f1f5f9;
-        }
-
-        .feature-item:hover {
-            transform: translateY(-10px);
+        .feature-card {
             background: var(--white);
-            box-shadow: var(--shadow);
-            border-color: var(--primary);
+            padding: 48px;
+            border-radius: 30px;
+            transition: transform 0.4s ease;
         }
 
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--white);
-            border-radius: 15px;
+        .feature-card:hover {
+            transform: scale(1.03);
+        }
+
+        .f-icon {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        /* Order Steps */
+        .how-to {
+            padding: 100px 0;
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .step-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-num {
+            width: 50px;
+            height: 50px;
+            background: var(--text-main);
+            color: var(--white);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            font-weight: 800;
+            margin: 0 auto 20px;
         }
 
-        /* آراء العملاء */
+        /* Testimonials */
         .testimonials {
             padding: 100px 0;
         }
 
-        .test-grid {
+        .t-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
         }
 
-        .test-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        .t-card {
+            background: var(--secondary-bg);
+            padding: 40px;
+            border-radius: 24px;
         }
 
-        .stars {
-            color: var(--accent);
-            margin-bottom: 15px;
-            font-size: 1.2rem;
+        .t-user {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        /* الفوتر */
+        .t-avatar {
+            width: 44px;
+            height: 44px;
+            background: #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Footer */
         footer {
-            background: #0f172a;
-            color: #94a3b8;
-            padding: 60px 0 30px;
-            text-align: center;
+            background: #000;
+            color: #f5f5f7;
+            padding: 80px 0 40px;
         }
 
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--white);
-            margin-bottom: 20px;
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: 60px;
         }
 
-        /* الاستجابة للهواتف */
-        @media (max-width: 968px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .hero-content { order: 2; }
-            .hero-image { order: 1; }
-            .price-wrapper { justify-content: center; }
-        }
+        .f-cta h2 { font-size: 2.5rem; margin-bottom: 20px; }
 
-        @media (max-width: 480px) {
-            .hero { padding-top: 100px; }
-            .btn { width: 100%; }
-            .hero-image img { max-width: 280px; }
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .hero-btns { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto 40px; }
+            .stats-grid { grid-template-columns: 1fr; gap: 30px; }
         }
     </style>
 </head>
@@ -267,48 +304,92 @@
     <header>
         <div class="container">
             <nav>
-                <a href="#" class="logo">TECH<span>STORE</span></a>
-                <a href="#" id="nav-cta" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">اطلب الآن</a>
+                <a href="#" class="logo">APPLE<span>STYLE</span></a>
+                <a href="#" id="nav-buy" class="btn btn-primary" style="padding: 6px 16px; font-size: 0.85rem;">اشتري الآن</a>
             </nav>
         </div>
     </header>
 
     <main>
+        <!-- Hero Section -->
         <section class="hero">
-            <div class="container hero-grid">
-                <div class="hero-content">
-                    <h1 id="p-name">جاري التحميل...</h1>
-                    <p id="p-desc"></p>
-                    <div class="price-wrapper">
-                        <span class="current-price" id="p-price"></span>
-                        <span class="currency" id="p-currency"></span>
-                    </div>
-                    <a href="#" id="hero-cta" class="btn">اشترِ الآن واحصل على توصيل مجاني</a>
+            <div class="container">
+                <span class="hero-tag">جديدنا لعام 2025</span>
+                <h1 id="p-name"></h1>
+                <p id="p-desc"></p>
+                <div class="hero-btns">
+                    <a href="#" id="main-buy" class="btn btn-primary">اطلب الآن - <span id="p-price"></span></a>
                 </div>
-                <div class="hero-image">
+                <div class="hero-image-container">
                     <img id="p-img" src="" alt="">
                 </div>
             </div>
         </section>
 
-        <section class="features">
-            <div class="container">
-                <div class="section-header">
-                    <h2>لماذا تختار هذا المنتج؟</h2>
+        <!-- Quick Stats -->
+        <section class="stats">
+            <div class="container stats-grid">
+                <div class="stat-item reveal">
+                    <h3>+15k</h3>
+                    <p>عميل سعيد في المغرب</p>
                 </div>
-                <div class="features-grid" id="f-grid">
-                    <!-- سيتم حقن المميزات هنا -->
+                <div class="stat-item reveal" style="transition-delay: 0.2s;">
+                    <h3>24h</h3>
+                    <p>توصيل لجميع المدن</p>
+                </div>
+                <div class="stat-item reveal" style="transition-delay: 0.4s;">
+                    <h3>100%</h3>
+                    <p>ضمان الجودة والأصالة</p>
                 </div>
             </div>
         </section>
 
+        <!-- Features -->
+        <section class="features">
+            <div class="container">
+                <div class="section-header reveal" style="text-align: center; margin-bottom: 60px;">
+                    <h2 style="font-size: 3rem; font-weight: 800;">مميزات استثنائية.</h2>
+                </div>
+                <div class="features-grid" id="features-container">
+                    <!-- Dynamic Content -->
+                </div>
+            </div>
+        </section>
+
+        <!-- How to order -->
+        <section class="how-to">
+            <div class="container">
+                <div style="text-align: center;">
+                    <h2 style="font-size: 2.5rem; font-weight: 800;">كيفية الطلب</h2>
+                </div>
+                <div class="step-grid">
+                    <div class="step-item reveal">
+                        <div class="step-num">1</div>
+                        <h4>اضغط "اطلب الآن"</h4>
+                        <p style="color: var(--text-secondary);">املأ معلوماتك البسيطة في استمارة الطلب.</p>
+                    </div>
+                    <div class="step-item reveal" style="transition-delay: 0.2s;">
+                        <div class="step-num">2</div>
+                        <h4>تأكيد المكالمة</h4>
+                        <p style="color: var(--text-secondary);">سيتصل بك فريقنا لتأكيد العنوان والطلب.</p>
+                    </div>
+                    <div class="step-item reveal" style="transition-delay: 0.4s;">
+                        <div class="step-num">3</div>
+                        <h4>الدفع عند الاستلام</h4>
+                        <p style="color: var(--text-secondary);">توصل بمنتجك حتى الباب ثم ادفع الثمن.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
         <section class="testimonials">
             <div class="container">
-                <div class="section-header">
-                    <h2>ماذا يقول عملاؤنا في المغرب</h2>
+                <div style="margin-bottom: 50px;">
+                    <h2 style="font-size: 2.5rem; font-weight: 800;">آراء مستخدمينا.</h2>
                 </div>
-                <div class="test-grid" id="t-grid">
-                    <!-- سيتم حقن الآراء هنا -->
+                <div class="t-grid" id="testimonials-container">
+                    <!-- Dynamic Content -->
                 </div>
             </div>
         </section>
@@ -316,76 +397,102 @@
 
     <footer>
         <div class="container">
-            <div class="footer-logo">TECHSTORE</div>
-            <p>أفضل جودة بأفضل سعر في السوق المغربي.</p>
-            <div style="margin: 30px 0; border-top: 1px solid #1e293b; padding-top: 20px;">
-                <p>&copy; 2025 جميع الحقوق محفوظة لمتجرنا.</p>
+            <div class="footer-grid">
+                <div class="f-cta">
+                    <h2>جاهز لتغيير تجربتك؟</h2>
+                    <a href="#" id="footer-buy" class="btn btn-primary" style="padding: 16px 40px;">اطلب منتجك الآن</a>
+                </div>
+                <div style="text-align: left; align-self: end;">
+                    <p>دعم فني 24/7 عبر الواتساب</p>
+                    <p style="font-size: 1.5rem; font-weight: bold; color: white;">+212 600 000 000</p>
+                </div>
+            </div>
+            <div style="padding-top: 40px; border-top: 1px solid #333; font-size: 0.8rem; color: #666; display: flex; justify-content: space-between;">
+                <p>&copy; 2025 PREMIUM STORE MAROC. All rights reserved.</p>
+                <div style="display: flex; gap: 20px;">
+                    <a href="#" style="color: #666; text-decoration: none;">الخصوصية</a>
+                    <a href="#" style="color: #666; text-decoration: none;">الشروط</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
         /**
-         * كائن البيانات المركزي - قم بتغيير هذه القيم لتغيير المحتوى بالكامل
+         * كائن التحكم في البيانات - عدل هنا وسيتغير الموقع فوراً
          */
         const productData = {
-            name: "ساعة Ultra الذكية الجيل الثامن",
-            description: "التجربة المثالية للساعات الذكية الآن في المغرب. شاشة كاملة، مقاومة للماء، وتتبع دقيق لجميع الأنشطة الرياضية والصحية.",
+            name: "ساعة Ultra Max Pro",
+            description: "أناقة لا مثيل لها مع تقنيات الجيل الجديد. مصممة لتكون رفيقك المثالي في الرياضة، العمل، والحياة اليومية.",
             price: "499",
             currency: "درهم مغربي",
-            imageUrl: "https://images.unsplash.com/photo-1546868891-d5b81961cffe?q=80&w=1000&auto=format&fit=crop",
-            buyLink: "https://wa.me/212600000000?text=أريد_طلب_الساعة_الذكية",
+            imageUrl: "https://images.unsplash.com/photo-1544006659-f0b21f04cb1b?q=80&w=1470&auto=format&fit=crop",
+            buyLink: "https://wa.me/212600000000?text=طلب_ساعة_ألترا_ماكس",
             features: [
-                { title: "ضد الماء", desc: "تصميم متين يدعم السباحة والغطس بمعيار IP68.", icon: "🌊" },
-                { title: "بطارية خارقة", desc: "استخدام متواصل يصل لـ 10 أيام دون الحاجة لشحن.", icon: "🔋" },
-                { title: "مكالمات بلوتوث", desc: "إمكانية الرد وإجراء المكالمات مباشرة من الساعة.", icon: "📞" },
-                { title: "تتبع الصحة", desc: "مراقبة نبض القلب والأكسجين وجودة النوم بدقة.", icon: "❤️" }
+                { title: "شاشة Retina", desc: "وضوح فائق وألوان غنية حتى تحت أشعة الشمس المباشرة.", icon: "✨" },
+                { title: "مستشعرات صحية", desc: "تتبع دقيق لنبضات القلب، الأكسجين، وحرق السعرات.", icon: "🏥" },
+                { title: "مقاومة كاملة", desc: "هيكل من التيتانيوم القوي مع مقاومة للغبار والماء بعمق 50 متر.", icon: "🛡️" },
+                { title: "تطبيقات ذكية", desc: "إشعارات فورية، مكالمات، وذكاء اصطناعي بين يديك.", icon: "🚀" }
             ],
             testimonials: [
-                { user: "يوسف من الدار البيضاء", text: "صراحة جودة الهاردوير ممتازة والساعة كتبان فخمة بزااف.", stars: 5 },
-                { user: "أمينة من مراكش", text: "التوصيل كان سريع والخدمة رائعة، الساعة كما في الصورة.", stars: 5 },
-                { user: "سفيان من الرباط", text: "أفضل قيمة مقابل سعر، البطارية كتصبر ليا سيمانة وزيادة.", stars: 4 }
+                { user: "ياسين، الرباط", text: "بصراحة الساعة فنة، التوصيل جاني في قل من 24 ساعة لدار البيضاء والتعامل احترافي.", stars: 5 },
+                { user: "مريم، طنجة", text: "أعجبني التصميم بزاف، خفيفة في اليد والبطارية كتدوم ليا سيمانة تقريباً.", stars: 5 },
+                { user: "كريم، مراكش", text: "جودة الهاردوير واعرة، كنت خايف تكون ثقيلة ولكن بالعكس مريحة جداً.", stars: 4 }
             ]
         };
 
-        // وظيفة تحديث محتوى الصفحة
-        function renderContent() {
-            // تحديث العناصر الأساسية
-            document.title = productData.name;
-            document.getElementById('p-name').textContent = productData.name;
-            document.getElementById('p-desc').textContent = productData.description;
-            document.getElementById('p-price').textContent = productData.price;
-            document.getElementById('p-currency').textContent = productData.currency;
+        function initApp() {
+            // Basic Info
+            document.title = productData.name + " - العرض الحصري";
+            document.getElementById('p-name').innerText = productData.name;
+            document.getElementById('p-desc').innerText = productData.description;
+            document.getElementById('p-price').innerText = productData.price + " " + productData.currency;
             document.getElementById('p-img').src = productData.imageUrl;
-            document.getElementById('p-img').alt = productData.name;
+            
+            // Buy Links
+            const buyLinks = ['main-buy', 'nav-buy', 'footer-buy'];
+            buyLinks.forEach(id => {
+                const el = document.getElementById(id);
+                if(el) el.href = productData.buyLink;
+            });
 
-            // تحديث روابط الشراء
-            document.getElementById('hero-cta').href = productData.buyLink;
-            document.getElementById('nav-cta').href = productData.buyLink;
-
-            // تحديث المميزات
-            const fGrid = document.getElementById('f-grid');
-            fGrid.innerHTML = productData.features.map(f => `
-                <div class="feature-item">
-                    <div class="feature-icon">${f.icon}</div>
+            // Features
+            const fContainer = document.getElementById('features-container');
+            fContainer.innerHTML = productData.features.map((f, i) => `
+                <div class="feature-card reveal" style="transition-delay: ${i * 0.1}s">
+                    <span class="f-icon">${f.icon}</span>
                     <h3>${f.title}</h3>
-                    <p style="color: var(--text-light); margin-top: 10px;">${f.desc}</p>
+                    <p style="color: var(--text-secondary);">${f.desc}</p>
                 </div>
             `).join('');
 
-            // تحديث الآراء
-            const tGrid = document.getElementById('t-grid');
-            tGrid.innerHTML = productData.testimonials.map(t => `
-                <div class="test-card">
-                    <div class="stars">${'★'.repeat(t.stars)}${'☆'.repeat(5 - t.stars)}</div>
-                    <p style="margin-bottom: 15px; font-style: italic;">"${t.text}"</p>
-                    <div style="font-weight: 700; color: var(--primary);">${t.user}</div>
+            // Testimonials
+            const tContainer = document.getElementById('testimonials-container');
+            tContainer.innerHTML = productData.testimonials.map((t, i) => `
+                <div class="t-card reveal" style="transition-delay: ${i * 0.1}s">
+                    <div style="color: var(--accent); margin-bottom: 15px;">${'★'.repeat(t.stars)}${'☆'.repeat(5-t.stars)}</div>
+                    <p style="font-size: 1.1rem; line-height: 1.6;">"${t.text}"</p>
+                    <div class="t-user">
+                        <div class="t-avatar">${t.user.charAt(0)}</div>
+                        <div style="font-weight: 700;">${t.user}</div>
+                    </div>
                 </div>
             `).join('');
+
+            // Scroll reveal animation
+            const observerOptions = { threshold: 0.1 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         }
 
-        // تشغيل الوظيفة عند تحميل الصفحة
-        window.onload = renderContent;
+        window.onload = initApp;
     </script>
 </body>
 </html>
