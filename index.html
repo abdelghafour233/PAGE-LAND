@@ -19,6 +19,7 @@
             --text-gray: #86868b;
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.8);
+            --whatsapp-color: #25d366;
         }
 
         * {
@@ -42,6 +43,14 @@
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
+        @keyframes vibrate {
+            0% { transform: scale(1); }
+            10%, 20% { transform: scale(1.1) rotate(-3deg); }
+            30%, 50%, 70%, 90% { transform: scale(1.1) rotate(3deg); }
+            40%, 60%, 80% { transform: scale(1.1) rotate(-3deg); }
+            100% { transform: scale(1) rotate(0); }
+        }
+
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -51,6 +60,33 @@
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background-color: var(--whatsapp-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            animation: vibrate 3s infinite;
+        }
+
+        .whatsapp-float svg {
+            width: 35px;
+            height: 35px;
+            fill: white;
         }
 
         /* Header */
@@ -257,7 +293,7 @@
         }
 
         .footer-link {
-            background: #25d366;
+            background: var(--whatsapp-color);
             color: white;
             padding: 14px 32px;
             border-radius: 100px;
@@ -329,10 +365,19 @@
             .hero h1 { font-size: 3rem; }
             .btn-main { width: 90%; text-align: center; }
             .modal-content { padding: 25px; margin: 10% auto; }
+            .whatsapp-float { bottom: 20px; right: 20px; width: 55px; height: 55px; }
+            .whatsapp-float svg { width: 28px; height: 28px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Floating WhatsApp -->
+    <a href="#" id="floating-whatsapp" class="whatsapp-float" target="_blank" aria-label="تواصل معنا عبر واتساب">
+        <svg viewBox="0 0 32 32">
+            <path d="M16 0C7.163 0 0 7.163 0 16c0 2.825.733 5.58 2.128 8.004L0 32l8.258-2.164C10.613 31.226 13.268 32 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm9.431 22.846c-.39.553-1.916 1.045-2.628 1.111-.711.066-1.423.099-4.238-.857-3.394-1.154-5.58-4.603-5.748-4.831-.168-.228-1.353-1.798-1.353-3.43 0-1.632.854-2.434 1.157-2.76.303-.326.657-.408.876-.408.219 0 .438.001.629.01.205.009.48-.078.751.572.271.65.926 2.258 1.006 2.421.08.163.133.353.026.567-.107.214-.161.348-.32.533-.159.185-.334.412-.477.553-.159.157-.324.328-.14.643.185.315.82 1.348 1.761 2.189 1.209 1.082 2.228 1.417 2.543 1.574.315.157.5-.131.684-.343.184-.212.791-.924 1.002-1.24.211-.315.421-.263.711-.157.29.106 1.843.869 2.159 1.027.316.158.527.237.606.37.079.133.079.77-.311 1.323z"/>
+        </svg>
+    </a>
 
     <header>
         <nav>
@@ -448,8 +493,8 @@
                 price: "499",
                 currency: "درهم مغربي",
                 image: "https://images.unsplash.com/photo-1434493907317-a46b53b81882?q=80&w=1200&auto=format&fit=crop",
-                buyLink: "https://wa.me/212600000000?text=أريد_طلب_ساعة_ألترا_برو_الأصلية",
-                whatsapp: "https://wa.me/212600000000"
+                buyLink: "https://wa.me/212649075664?text=أريد_طلب_ساعة_ألترا_برو_الأصلية",
+                whatsapp: "https://wa.me/212649075664"
             },
             features: [
                 { title: "شاشة AMOLED", text: "وضوح فائق حتى تحت أشعة الشمس المباشرة مع استهلاك أقل للبطارية.", icon: "✨" },
@@ -481,6 +526,7 @@
             document.getElementById('hero-cta').href = storeData.product.buyLink;
             document.getElementById('nav-cta').href = storeData.product.buyLink;
             document.getElementById('wa-link').href = storeData.product.whatsapp;
+            document.getElementById('floating-whatsapp').href = storeData.product.whatsapp;
 
             // المميزات
             const fCont = document.getElementById('f-container');
